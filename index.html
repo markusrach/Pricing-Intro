@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Power Simulator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f3;
+      --bg-tertiary: #efefec;
+      --text-primary: #1a1a18;
+      --text-secondary: #5f5e5a;
+      --text-tertiary: #888780;
+      --border-light: rgba(0,0,0,0.12);
+      --border-mid: rgba(0,0,0,0.22);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1e1e1c;
+        --bg-secondary: #2a2a27;
+        --bg-tertiary: #323230;
+        --text-primary: #e8e8e2;
+        --text-secondary: #a8a79f;
+        --text-tertiary: #6e6d68;
+        --border-light: rgba(255,255,255,0.1);
+        --border-mid: rgba(255,255,255,0.2);
+      }
+      .sp  { color: #85B7EB !important; }
+      .xu  { color: #97C459 !important; }
+      .vc  { color: #AFA9EC !important; }
+      .fc  { color: #B4B2A9 !important; }
+      .pr  { color: #F09595 !important; }
+      .lc.act-blue   { background: #042C53 !important; border-color: #378ADD !important; }
+      .lc.act-green  { background: #173404 !important; border-color: #639922 !important; }
+      .lc.act-purple { background: #26215C !important; border-color: #534AB7 !important; }
+      .lv.blue   { color: #85B7EB !important; }
+      .lv.green  { color: #97C459 !important; }
+      .lv.purple { color: #AFA9EC !important; }
+      .baseline-profit { background: #501313 !important; }
+      .baseline-profit .bplbl { color: #F09595 !important; }
+      .baseline-profit .bpval { color: #F7C1C1 !important; }
+      .winner-banner { background: #173404 !important; border-color: #3B6D11 !important; }
+      .wb-title { color: #C0DD97 !important; }
+      .wb-body  { color: #97C459 !important; }
+      .res-col  { background: var(--bg-secondary) !important; }
+      input[type=range] { background: transparent; }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 0.5px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .page-header .course-tag {
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--bg-secondary);
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-light);
+    }
+
+    .sec-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .surface {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+    }
+
+    .sp  { color: #185FA5; font-weight: 500; }
+    .xu  { color: #3B6D11; font-weight: 500; }
+    .vc  { color: #3C3489; font-weight: 500; }
+    .fc  { color: #444441; font-weight: 500; }
+    .pr  { color: #A32D2D; font-weight: 500; }
+
+    /* ── Formula section ── */
+    .formula-box {
+      margin-bottom: 1.75rem;
+    }
+    .formula-line {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .formula-line.mono {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 0.5px solid var(--border-light);
+    }
+    .legend-item {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Baseline ── */
+    .baseline-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .bc .blbl { font-size: 11px; margin-bottom: 3px; }
+    .bc .bval { font-size: 20px; font-weight: 500; }
+
+    .baseline-profit {
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1.75rem;
+      background: #FCEBEB;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .baseline-profit .bplbl { font-size: 13px; color: #791F1F; }
+    .baseline-profit .bpval { font-size: 26px; font-weight: 500; color: #A32D2D; }
+
+    /* ── Levers ── */
+    .levers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-bottom: 1.75rem;
+    }
+    .lc {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      cursor: pointer;
+      background: var(--bg-primary);
+      transition: border-color 0.15s;
+    }
+    .lc:hover { border-color: var(--border-mid); }
+    .lc.act-blue   { border: 2px solid #378ADD; background: #E6F1FB; }
+    .lc.act-green  { border: 2px solid #639922; background: #EAF3DE; }
+    .lc.act-purple { border: 2px solid #534AB7; background: #EEEDFE; }
+
+    .lt { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+    .ls { font-size: 11px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.4; }
+    .lv { font-size: 22px; font-weight: 500; margin-bottom: 8px; }
+    .lv.blue   { color: #185FA5; }
+    .lv.green  { color: #3B6D11; }
+    .lv.purple { color: #3C3489; }
+    .lmeta { font-size: 11px; color: var(--text-secondary); margin-top: 5px; }
+
+    input[type=range] { width: 100%; cursor: pointer; }
+    input[type=range].rblue   { accent-color: #378ADD; }
+    input[type=range].rgreen  { accent-color: #639922; }
+    input[type=range].rpurple { accent-color: #534AB7; }
+
+    /* ── Results ── */
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-bottom: 1.75rem;
+    }
+    .res-col {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.25rem;
+      background: var(--bg-primary);
+    }
+    .rhead {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .calc-line {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      margin-bottom: 4px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .calc-line .num { color: var(--text-primary); }
+    .profit-line {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 0.5px solid var(--border-light);
+    }
+    .profit-name { font-size: 11px; font-weight: 500; margin-bottom: 3px; }
+    .profit-val  { font-size: 26px; font-weight: 500; color: #A32D2D; }
+    .profit-diff { font-size: 13px; font-weight: 500; margin-top: 3px; }
+    .profit-diff.up   { color: #3B6D11; }
+    .profit-diff.down { color: #A32D2D; }
+    .profit-diff.zero { color: var(--text-secondary); }
+
+    /* ── Winner banner ── */
+    .winner-banner {
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.25rem;
+      background: #EAF3DE;
+      border: 0.5px solid #97C459;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .wb-title { font-size: 14px; font-weight: 500; color: #27500A; margin-bottom: 5px; }
+    .wb-body  { font-size: 13px; color: #3B6D11; line-height: 1.6; }
+
+    /* ── Research panel ── */
+    .rtoggle {
+      font-size: 12px;
+      cursor: pointer;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 5px 14px;
+      background: none;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      display: none;
+      font-family: var(--font-sans);
+    }
+    .rtoggle:hover { border-color: var(--border-mid); }
+
+    .rpanel {
+      display: none;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      background: var(--bg-primary);
+    }
+    .rpanel table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .rpanel th {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: left;
+      padding: 5px 8px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .rpanel td {
+      padding: 8px 8px;
+      border-bottom: 0.5px solid var(--border-light);
+      color: var(--text-primary);
+    }
+    .rpanel tr:last-child td { border-bottom: none; }
+    .rpanel td.hl { font-weight: 500; color: #3B6D11; }
+    .rpanel .note { font-size: 11px; color: var(--text-secondary); margin-top: 8px; }
+
+    .reset-btn {
+      font-size: 12px;
+      cursor: pointer;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 5px 14px;
+      background: none;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      margin-bottom: 2rem;
+    }
+    .reset-btn:hover { border-color: var(--border-mid); }
+
+    .page-footer {
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--border-light);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    @media (max-width: 580px) {
+      .baseline-row  { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .levers-grid   { grid-template-columns: 1fr; }
+      .res-grid      { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-header">
+    <h1>Why does pricing matter?</h1>
+
+  </div>
+
+  <!-- Formula -->
+  <div class="sec-lbl">The profit formula</div>
+  <div class="card formula-box">
+    <div class="formula-line">
+      <span class="pr">Profit</span> =
+      <span class="sp">Sales Price</span> &times; <span class="xu">Units sold</span>
+      &minus; <span class="vc">Variable Cost</span> &times; <span class="xu">Units sold</span>
+      &minus; <span class="fc">Fixed Cost</span>
+    </div>
+    <div class="formula-line mono">
+      <span class="pr">Profit</span> =
+      <span class="sp">SP</span> &times; <span class="xu">X</span>
+      &minus; <span class="vc">VC</span> &times; <span class="xu">X</span>
+      &minus; <span class="fc">FC</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-item"><span class="dot" style="background:#185FA5;"></span><span class="sp">SP</span> = Sales Price &mdash; what you charge per unit</span>
+      <span class="legend-item"><span class="dot" style="background:#3B6D11;"></span><span class="xu">X</span> = Units sold &mdash; how many you sell</span>
+      <span class="legend-item"><span class="dot" style="background:#3C3489;"></span><span class="vc">VC</span> = Variable Cost &mdash; cost per unit (materials, delivery&hellip;)</span>
+      <span class="legend-item"><span class="dot" style="background:#444441;"></span><span class="fc">FC</span> = Fixed Cost &mdash; costs that don&rsquo;t change (rent, salaries&hellip;)</span>
+    </div>
+  </div>
+
+  <!-- Baseline -->
+  <div class="sec-lbl">Baseline &mdash; your starting numbers</div>
+  <div class="baseline-row">
+    <div class="surface bc"><div class="blbl sp">Sales Price (SP)</div><div class="bval sp">100</div></div>
+    <div class="surface bc"><div class="blbl xu">Units sold (X)</div><div class="bval xu">1,000</div></div>
+    <div class="surface bc"><div class="blbl vc">Variable Cost (VC)</div><div class="bval vc">10</div></div>
+    <div class="surface bc"><div class="blbl fc">Fixed Cost (FC)</div><div class="bval fc">10,000</div></div>
+  </div>
+  <div class="baseline-profit">
+    <span class="bplbl">
+      Baseline <strong>Profit</strong> =
+      (<span class="sp" style="font-size:13px;">100</span> &times; <span class="xu" style="font-size:13px;">1,000</span>)
+      &minus; (<span class="vc" style="font-size:13px;">10</span> &times; <span class="xu" style="font-size:13px;">1,000</span>)
+      &minus; <span class="fc" style="font-size:13px;">10,000</span> =
+    </span>
+    <span class="bpval">80,000</span>
+  </div>
+
+  <!-- Levers -->
+  <div class="sec-lbl">Now you &mdash; click a lever, then slide it</div>
+  <div class="levers-grid">
+    <div class="lc" id="lc-price" onclick="activate('price')">
+      <div class="lt sp">Raise the price</div>
+      <div class="ls">Only SP changes &mdash; everything else stays the same</div>
+      <div class="lv blue" id="lv-price">+10%</div>
+      <input type="range" class="rblue" id="sl-price" min="-30" max="30" value="10" step="5" oninput="slide('price',this.value)" disabled>
+      <div class="lmeta"><span class="sp">SP</span> = <span id="sp-disp">110</span></div>
+    </div>
+    <div class="lc" id="lc-units" onclick="activate('units')">
+      <div class="lt xu">Sell more units</div>
+      <div class="ls">Only X changes &mdash; everything else stays the same</div>
+      <div class="lv green" id="lv-units">+10%</div>
+      <input type="range" class="rgreen" id="sl-units" min="-30" max="30" value="10" step="5" oninput="slide('units',this.value)" disabled>
+      <div class="lmeta"><span class="xu">X</span> = <span id="x-disp">1,100</span></div>
+    </div>
+    <div class="lc" id="lc-vc" onclick="activate('vc')">
+      <div class="lt vc">Cut variable costs</div>
+      <div class="ls">Only VC changes &mdash; FC stays fixed regardless</div>
+      <div class="lv purple" id="lv-vc">&minus;10%</div>
+      <input type="range" class="rpurple" id="sl-vc" min="-30" max="30" value="-10" step="5" oninput="slide('vc',this.value)" disabled>
+      <div class="lmeta"><span class="vc">VC</span> = <span id="vc-disp">9.0</span></div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="sec-lbl">What happens to profit?</div>
+  <div class="res-grid">
+
+    <div class="res-col">
+      <div class="rhead sp">Price change scenario</div>
+      <div class="calc-line">Revenue = <span class="sp num" id="r-sp">110</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-rev-p">110,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num">10</span> &times; <span class="xu num">1,000</span> = <span class="num">10,000</span></div>
+      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="profit-line">
+        <div class="profit-name pr">Profit</div>
+        <div class="profit-val" id="pv-price">90,000</div>
+        <div class="profit-diff up" id="pd-price">+10,000 vs baseline</div>
+      </div>
+    </div>
+
+    <div class="res-col">
+      <div class="rhead xu">Units change scenario</div>
+      <div class="calc-line">Revenue = <span class="sp num">100</span> &times; <span class="xu num" id="r-xu">1,100</span> = <span class="num" id="r-rev-u">110,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num">10</span> &times; <span class="xu num" id="r-xu2">1,100</span> = <span class="num" id="r-vc-u">11,000</span></div>
+      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="profit-line">
+        <div class="profit-name pr">Profit</div>
+        <div class="profit-val" id="pv-units">89,000</div>
+        <div class="profit-diff up" id="pd-units">+9,000 vs baseline</div>
+      </div>
+    </div>
+
+    <div class="res-col">
+      <div class="rhead vc">Cost change scenario</div>
+      <div class="calc-line">Revenue = <span class="sp num">100</span> &times; <span class="xu num">1,000</span> = <span class="num">100,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num" id="r-vc">9.0</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-vctot">9,000</span></div>
+      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="profit-line">
+        <div class="profit-name pr">Profit</div>
+        <div class="profit-val" id="pv-vc">81,000</div>
+        <div class="profit-diff up" id="pd-vc">+1,000 vs baseline</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Winner banner -->
+  <div class="winner-banner" id="winner-banner">
+    <div class="wb-title">Price is the most powerful lever.</div>
+    <div class="wb-body" id="winner-body">At +10%, a price increase adds <strong>+10,000</strong> to profit &mdash; that is 10&times; more than cutting variable costs (+1,000) and more than selling 10% extra units (+9,000). Price goes straight to the bottom line because it doesn&rsquo;t create any extra cost.</div>
+  </div>
+
+  <!-- Research -->
+  <button class="rtoggle" id="rtoggle" onclick="toggleResearch()">Show research: what a study of 1,200 companies found</button>
+  <div class="rpanel" id="rpanel">
+    <div class="sec-lbl" style="margin-bottom:8px;">Impact of a 1% improvement on profit (1,200 companies)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Profit driver</th>
+          <th>Profit impact of 1% improvement</th>
+          <th>Improvement needed to double profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="hl sp">Price</td><td class="hl">11.0%</td><td class="hl">9.1%</td></tr>
+        <tr><td class="vc">Variable costs</td><td>7.2%</td><td>13.7%</td></tr>
+        <tr><td class="xu">Unit sales</td><td>3.7%</td><td>27.1%</td></tr>
+        <tr><td class="fc">Fixed costs</td><td>2.7%</td><td>37.1%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">To double profit through price alone, you only need a 9.1% price increase. To achieve the same by selling more units, you would need to grow sales by 27.1%.</p>
+  </div>
+
+  <button class="reset-btn" onclick="resetAll()">Reset simulator</button>
+
+  <div class="page-footer">
+    Pricing &mdash; Prof. Dr. Markus Rach
+  </div>
+
+</div>
+
+<script>
+  const B = { sp:100, x:1000, vc:10, fc:10000, profit:80000 };
+  const tried = { price:false, units:false, vc:false };
+  let active = null;
+
+  function fmt(n){ return Math.round(n).toLocaleString(); }
+  function fmtd(n){ return parseFloat(n.toFixed(1)).toLocaleString(); }
+  function calcProfit(sp,x,vc,fc){ return (sp*x)-(vc*x)-fc; }
+
+  function activate(lv){
+    if(active===lv) return;
+    active = lv;
+    ['price','units','vc'].forEach(function(l){
+      var c = document.getElementById('lc-'+l);
+      var s = document.getElementById('sl-'+l);
+      c.className = 'lc';
+      s.disabled = true;
+      if(l===lv){
+        c.classList.add(l==='price'?'act-blue':l==='units'?'act-green':'act-purple');
+        s.disabled = false;
+      }
+    });
+    tried[lv] = true;
+    updateAll();
+    checkWinner();
+  }
+
+  function slide(lv, val){
+    val = parseInt(val);
+    var sign = val >= 0 ? '+' : '';
+    if(lv==='price'){
+      document.getElementById('lv-price').textContent = sign+val+'%';
+      document.getElementById('sp-disp').textContent = Math.round(B.sp*(1+val/100));
+    } else if(lv==='units'){
+      document.getElementById('lv-units').textContent = sign+val+'%';
+      document.getElementById('x-disp').textContent = fmt(Math.round(B.x*(1+val/100)));
+    } else {
+      document.getElementById('lv-vc').textContent = (val>=0?'+':'')+val+'%';
+      document.getElementById('vc-disp').textContent = (B.vc*(1+val/100)).toFixed(1);
+    }
+    updateAll();
+  }
+
+  function updateAll(){
+    var pv = parseInt(document.getElementById('sl-price').value);
+    var uv = parseInt(document.getElementById('sl-units').value);
+    var vv = parseInt(document.getElementById('sl-vc').value);
+
+    var sp2 = Math.round(B.sp*(1+pv/100));
+    var x2  = Math.round(B.x*(1+uv/100));
+    var vc2 = parseFloat((B.vc*(1+vv/100)).toFixed(1));
+
+    var pp = calcProfit(sp2, B.x,  B.vc, B.fc);
+    var up = calcProfit(B.sp, x2,  B.vc, B.fc);
+    var vp = calcProfit(B.sp, B.x, vc2,  B.fc);
+
+    document.getElementById('r-sp').textContent    = sp2;
+    document.getElementById('r-rev-p').textContent = fmt(sp2*B.x);
+    setProfit('price', pp);
+
+    document.getElementById('r-xu').textContent    = fmt(x2);
+    document.getElementById('r-xu2').textContent   = fmt(x2);
+    document.getElementById('r-rev-u').textContent = fmt(B.sp*x2);
+    document.getElementById('r-vc-u').textContent  = fmt(B.vc*x2);
+    setProfit('units', up);
+
+    document.getElementById('r-vc').textContent    = fmtd(vc2);
+    document.getElementById('r-vctot').textContent = fmt(vc2*B.x);
+    setProfit('vc', vp);
+
+    updateWinnerText(pp, up, vp, pv, uv, vv);
+  }
+
+  function setProfit(t, p){
+    var diff = p - B.profit;
+    document.getElementById('pv-'+t).textContent = fmt(p);
+    var de = document.getElementById('pd-'+t);
+    de.textContent = (diff>=0?'+':'')+fmt(diff)+' vs baseline';
+    de.className = 'profit-diff '+(diff>0?'up':diff<0?'down':'zero');
+  }
+
+  function updateWinnerText(pp, up, vp, pv, uv, vv){
+    if(!tried.price||!tried.units||!tried.vc) return;
+    var pd = pp-B.profit, ud = up-B.profit, vd = vp-B.profit;
+    document.getElementById('winner-body').innerHTML =
+      'At '+pv+'%, a price increase adds <strong>'+(pd>=0?'+':'')+fmt(pd)+'</strong> to profit. '+
+      'Selling '+(uv>=0?'+':'')+uv+'% more units adds <strong>'+(ud>=0?'+':'')+fmt(ud)+'</strong>. '+
+      'Cutting variable costs by '+Math.abs(vv)+'% adds <strong>'+(vd>=0?'+':'')+fmt(vd)+'</strong>. '+
+      'Price goes straight to the bottom line &mdash; no extra costs are created.';
+  }
+
+  function checkWinner(){
+    if(tried.price&&tried.units&&tried.vc){
+      document.getElementById('winner-banner').style.display = 'block';
+      document.getElementById('rtoggle').style.display = 'inline-block';
+    }
+  }
+
+  function toggleResearch(){
+    var p = document.getElementById('rpanel');
+    var b = document.getElementById('rtoggle');
+    if(p.style.display==='block'){
+      p.style.display='none';
+      b.textContent='Show research: what a study of 1,200 companies found';
+    } else {
+      p.style.display='block';
+      b.textContent='Hide research';
+    }
+  }
+
+  function resetAll(){
+    active = null;
+    tried.price = tried.units = tried.vc = false;
+    ['price','units','vc'].forEach(function(l){
+      document.getElementById('lc-'+l).className = 'lc';
+      document.getElementById('sl-'+l).disabled = true;
+    });
+    document.getElementById('sl-price').value = 10;
+    document.getElementById('sl-units').value = 10;
+    document.getElementById('sl-vc').value = -10;
+    document.getElementById('lv-price').textContent = '+10%';
+    document.getElementById('lv-units').textContent = '+10%';
+    document.getElementById('lv-vc').textContent = '\u221210%';
+    document.getElementById('sp-disp').textContent = '110';
+    document.getElementById('x-disp').textContent = '1,100';
+    document.getElementById('vc-disp').textContent = '9.0';
+    document.getElementById('winner-banner').style.display = 'none';
+    document.getElementById('rtoggle').style.display = 'none';
+    document.getElementById('rpanel').style.display = 'none';
+    updateAll();
+  }
+
+  updateAll();
+</script>
+</body>
+</html>
