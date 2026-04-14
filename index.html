@@ -33,11 +33,12 @@
         --border-light: rgba(255,255,255,0.1);
         --border-mid: rgba(255,255,255,0.2);
       }
-      .sp  { color: #85B7EB !important; }
-      .xu  { color: #97C459 !important; }
-      .vc  { color: #AFA9EC !important; }
-      .fc  { color: #B4B2A9 !important; }
-      .pr  { color: #F09595 !important; }
+      .sp { color: #85B7EB !important; }
+      .xu { color: #97C459 !important; }
+      .vc { color: #AFA9EC !important; }
+      .fc { color: #B4B2A9 !important; }
+      .pr { color: #F09595 !important; }
+      .am { color: #FAC775 !important; }
       .lc.act-blue   { background: #042C53 !important; border-color: #378ADD !important; }
       .lc.act-green  { background: #173404 !important; border-color: #639922 !important; }
       .lc.act-purple { background: #26215C !important; border-color: #534AB7 !important; }
@@ -47,161 +48,68 @@
       .baseline-profit { background: #501313 !important; }
       .baseline-profit .bplbl { color: #F09595 !important; }
       .baseline-profit .bpval { color: #F7C1C1 !important; }
+      .combo-card { background: #2a1f0a !important; border-color: #BA7517 !important; }
+      .combo-title { color: #FAC775 !important; }
+      .combo-sub-text { color: #EF9F27 !important; }
+      .apple-box { background: #1e1e1c !important; border-color: #5f5e5a !important; }
+      .apple-box .apple-title { color: #e8e8e2 !important; }
+      .apple-box .apple-body  { color: #a8a79f !important; }
+      .apple-box .apple-stat  { background: #2a2a27 !important; }
+      .apple-box .apple-stat-val { color: #e8e8e2 !important; }
+      .combo-badge { background: #633806 !important; color: #FAC775 !important; }
+      .res-col  { background: var(--bg-secondary) !important; }
+      .combo-res { background: #2a1f0a !important; border-color: #BA7517 !important; }
+      .best-res  { background: #042C53 !important; border-color: #378ADD !important; }
       .winner-banner { background: #173404 !important; border-color: #3B6D11 !important; }
       .wb-title { color: #C0DD97 !important; }
       .wb-body  { color: #97C459 !important; }
-      .res-col  { background: var(--bg-secondary) !important; }
       input[type=range] { background: transparent; }
     }
 
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
+    body { font-family: var(--font-sans); background: var(--bg-tertiary); color: var(--text-primary); min-height: 100vh; padding: 2rem 1rem; }
+    .page-wrap { max-width: 860px; margin: 0 auto; }
+    .page-header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border-light); }
+    .page-header h1 { font-size: 20px; font-weight: 500; }
 
-    .page-wrap {
-      max-width: 780px;
-      margin: 0 auto;
-    }
+    .sec-lbl { font-size: 11px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
+    .sec-sub  { font-size: 11px; color: var(--text-tertiary); margin-bottom: 12px; line-height: 1.6; }
 
-    .page-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 0.5px solid var(--border-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .page-header h1 {
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-    .page-header .course-tag {
-      font-size: 12px;
-      color: var(--text-secondary);
-      background: var(--bg-secondary);
-      padding: 4px 10px;
-      border-radius: var(--radius-md);
-      border: 0.5px solid var(--border-light);
-    }
+    .card    { background: var(--bg-primary); border: 0.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; }
+    .surface { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1rem; }
 
-    .sec-lbl {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
+    .sp { color: #185FA5; font-weight: 500; }
+    .xu { color: #3B6D11; font-weight: 500; }
+    .vc { color: #3C3489; font-weight: 500; }
+    .fc { color: #444441; font-weight: 500; }
+    .pr { color: #A32D2D; font-weight: 500; }
+    .am { color: #854F0B; font-weight: 500; }
 
-    .card {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-    }
+    /* Formula */
+    .formula-box { margin-bottom: 1.75rem; }
+    .formula-line { font-size: 15px; margin-bottom: 6px; color: var(--text-primary); line-height: 1.7; }
+    .formula-line.mono { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
+    .legend-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; padding-top: 12px; border-top: 0.5px solid var(--border-light); }
+    .legend-item { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-    .surface {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
-      padding: 0.75rem 1rem;
-    }
-
-    .sp  { color: #185FA5; font-weight: 500; }
-    .xu  { color: #3B6D11; font-weight: 500; }
-    .vc  { color: #3C3489; font-weight: 500; }
-    .fc  { color: #444441; font-weight: 500; }
-    .pr  { color: #A32D2D; font-weight: 500; }
-
-    /* ── Formula section ── */
-    .formula-box {
-      margin-bottom: 1.75rem;
-    }
-    .formula-line {
-      font-size: 15px;
-      margin-bottom: 6px;
-      color: var(--text-primary);
-      line-height: 1.7;
-    }
-    .formula-line.mono {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .legend-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 20px;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 0.5px solid var(--border-light);
-    }
-    .legend-item {
-      font-size: 12px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ── Baseline ── */
-    .baseline-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
+    /* Baseline */
+    .baseline-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1rem; }
     .bc .blbl { font-size: 11px; margin-bottom: 3px; }
     .bc .bval { font-size: 20px; font-weight: 500; }
-
-    .baseline-profit {
-      border-radius: var(--radius-md);
-      padding: 0.9rem 1.25rem;
-      margin-bottom: 1.75rem;
-      background: #FCEBEB;
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+    .baseline-profit { border-radius: var(--radius-md); padding: 0.9rem 1.25rem; margin-bottom: 1.75rem; background: #FCEBEB; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
     .baseline-profit .bplbl { font-size: 13px; color: #791F1F; }
     .baseline-profit .bpval { font-size: 26px; font-weight: 500; color: #A32D2D; }
 
-    /* ── Levers ── */
-    .levers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
-      margin-bottom: 1.75rem;
-    }
-    .lc {
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      cursor: pointer;
-      background: var(--bg-primary);
-      transition: border-color 0.15s;
-    }
+    /* Step 1 levers */
+    .levers-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 12px; }
+    .lc { border: 0.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1rem; cursor: pointer; background: var(--bg-primary); transition: border-color 0.15s; }
     .lc:hover { border-color: var(--border-mid); }
     .lc.act-blue   { border: 2px solid #378ADD; background: #E6F1FB; }
     .lc.act-green  { border: 2px solid #639922; background: #EAF3DE; }
     .lc.act-purple { border: 2px solid #534AB7; background: #EEEDFE; }
-
     .lt { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
     .ls { font-size: 11px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.4; }
-    .lv { font-size: 22px; font-weight: 500; margin-bottom: 8px; }
+    .lv { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
     .lv.blue   { color: #185FA5; }
     .lv.green  { color: #3B6D11; }
     .lv.purple { color: #3C3489; }
@@ -211,129 +119,86 @@
     input[type=range].rblue   { accent-color: #378ADD; }
     input[type=range].rgreen  { accent-color: #639922; }
     input[type=range].rpurple { accent-color: #534AB7; }
+    input[type=range].ramber  { accent-color: #BA7517; }
 
-    /* ── Results ── */
-    .res-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
-      margin-bottom: 1.75rem;
-    }
-    .res-col {
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.1rem 1.25rem;
-      background: var(--bg-primary);
-    }
-    .rhead {
-      font-size: 12px;
-      font-weight: 500;
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 0.5px solid var(--border-light);
-    }
-    .calc-line {
-      font-size: 12px;
-      font-family: var(--font-mono);
-      margin-bottom: 4px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
+    /* Step 1 result boxes — 3 cols directly under levers */
+    .res-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 1.75rem; }
+    .res-col { border: 0.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1rem; background: var(--bg-primary); }
+    .rhead { font-size: 11px; font-weight: 500; margin-bottom: 8px; padding-bottom: 7px; border-bottom: 0.5px solid var(--border-light); }
+    .calc-line { font-size: 11px; font-family: var(--font-mono); margin-bottom: 3px; color: var(--text-secondary); line-height: 1.6; }
     .calc-line .num { color: var(--text-primary); }
-    .profit-line {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 0.5px solid var(--border-light);
-    }
-    .profit-name { font-size: 11px; font-weight: 500; margin-bottom: 3px; }
-    .profit-val  { font-size: 26px; font-weight: 500; color: #A32D2D; }
-    .profit-diff { font-size: 13px; font-weight: 500; margin-top: 3px; }
+    .profit-line { margin-top: 8px; padding-top: 8px; border-top: 0.5px solid var(--border-light); }
+    .profit-name { font-size: 10px; font-weight: 500; margin-bottom: 2px; }
+    .profit-val  { font-size: 22px; font-weight: 500; }
+    .profit-diff { font-size: 11px; font-weight: 500; margin-top: 2px; }
     .profit-diff.up   { color: #3B6D11; }
     .profit-diff.down { color: #A32D2D; }
     .profit-diff.zero { color: var(--text-secondary); }
 
-    /* ── Winner banner ── */
-    .winner-banner {
-      border-radius: var(--radius-lg);
-      padding: 1.1rem 1.25rem;
-      background: #EAF3DE;
-      border: 0.5px solid #97C459;
-      margin-bottom: 1.5rem;
-      display: none;
-    }
+    /* Winner step 1 */
+    .s1-winner { border-radius: var(--radius-md); padding: 0.75rem 1.1rem; background: #EAF3DE; border: 0.5px solid #97C459; margin-bottom: 1.75rem; display: none; font-size: 13px; color: #27500A; line-height: 1.6; }
+
+    .divider { border: none; border-top: 2px dashed var(--border-light); margin: 1.75rem 0; }
+
+    /* Apple context box */
+    .apple-box { background: var(--bg-primary); border: 0.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+    .apple-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .apple-logo { width: 28px; height: 28px; flex-shrink: 0; }
+    .apple-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .apple-body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+    .apple-stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
+    .apple-stat { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.7rem 0.9rem; }
+    .apple-stat-lbl { font-size: 10px; color: var(--text-tertiary); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .apple-stat-val { font-size: 16px; font-weight: 500; color: var(--text-primary); }
+    .apple-stat-sub { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+    .apple-source { font-size: 10px; color: var(--text-tertiary); line-height: 1.6; }
+    .apple-source a { color: var(--text-tertiary); }
+
+    /* Combo card */
+    .combo-card { border: 2px dashed #EF9F27; border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; background: #FAEEDA; }
+    .combo-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .combo-title { font-size: 14px; font-weight: 500; color: #633806; }
+    .combo-sub-text { font-size: 12px; color: #854F0B; margin-top: 3px; line-height: 1.5; }
+    .combo-badge { font-size: 11px; font-weight: 500; background: #EF9F27; color: #412402; padding: 3px 10px; border-radius: var(--radius-md); white-space: nowrap; flex-shrink: 0; }
+    .combo-sliders { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .csl-lbl  { font-size: 11px; margin-bottom: 4px; }
+    .csl-val  { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+    .csl-val.blue   { color: #185FA5; }
+    .csl-val.green  { color: #3B6D11; }
+    .csl-val.purple { color: #3C3489; }
+    .csl-meta { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+    /* Step 2 result boxes — combo + best single */
+    .res-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 1.75rem; }
+    .combo-res { border: 2px solid #EF9F27; border-radius: var(--radius-lg); padding: 1rem; background: #FAEEDA; }
+    .best-res  { border: 2px solid #378ADD; border-radius: var(--radius-lg); padding: 1rem; background: #E6F1FB; }
+
+    /* Winner banner */
+    .winner-banner { border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; background: #EAF3DE; border: 0.5px solid #97C459; margin-bottom: 1.5rem; display: none; }
     .wb-title { font-size: 14px; font-weight: 500; color: #27500A; margin-bottom: 5px; }
     .wb-body  { font-size: 13px; color: #3B6D11; line-height: 1.6; }
 
-    /* ── Research panel ── */
-    .rtoggle {
-      font-size: 12px;
-      cursor: pointer;
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 5px 14px;
-      background: none;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      display: none;
-      font-family: var(--font-sans);
-    }
+    .rtoggle { font-size: 12px; cursor: pointer; border: 0.5px solid var(--border-light); border-radius: var(--radius-md); padding: 5px 14px; background: none; color: var(--text-secondary); margin-bottom: 1rem; display: none; font-family: var(--font-sans); }
     .rtoggle:hover { border-color: var(--border-mid); }
-
-    .rpanel {
-      display: none;
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      margin-bottom: 1.25rem;
-      background: var(--bg-primary);
-    }
-    .rpanel table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .rpanel th {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-align: left;
-      padding: 5px 8px;
-      border-bottom: 0.5px solid var(--border-light);
-    }
-    .rpanel td {
-      padding: 8px 8px;
-      border-bottom: 0.5px solid var(--border-light);
-      color: var(--text-primary);
-    }
+    .rpanel { display: none; border: 0.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; background: var(--bg-primary); }
+    .rpanel table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .rpanel th { font-size: 11px; font-weight: 500; color: var(--text-secondary); text-align: left; padding: 5px 8px; border-bottom: 0.5px solid var(--border-light); }
+    .rpanel td { padding: 8px 8px; border-bottom: 0.5px solid var(--border-light); color: var(--text-primary); }
     .rpanel tr:last-child td { border-bottom: none; }
     .rpanel td.hl { font-weight: 500; color: #3B6D11; }
-    .rpanel .note { font-size: 11px; color: var(--text-secondary); margin-top: 8px; }
+    .rpanel .note { font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6; }
 
-    .reset-btn {
-      font-size: 12px;
-      cursor: pointer;
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 5px 14px;
-      background: none;
-      color: var(--text-secondary);
-      font-family: var(--font-sans);
-      margin-bottom: 2rem;
-    }
+    .reset-btn { font-size: 12px; cursor: pointer; border: 0.5px solid var(--border-light); border-radius: var(--radius-md); padding: 5px 14px; background: none; color: var(--text-secondary); font-family: var(--font-sans); margin-bottom: 2rem; }
     .reset-btn:hover { border-color: var(--border-mid); }
+    .page-footer { padding-top: 1.5rem; border-top: 0.5px solid var(--border-light); font-size: 11px; color: var(--text-tertiary); text-align: center; }
 
-    .page-footer {
-      padding-top: 1.5rem;
-      border-top: 0.5px solid var(--border-light);
-      font-size: 11px;
-      color: var(--text-tertiary);
-      text-align: center;
-    }
-
-    @media (max-width: 580px) {
-      .baseline-row  { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .levers-grid   { grid-template-columns: 1fr; }
-      .res-grid      { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .baseline-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .levers-grid  { grid-template-columns: 1fr; }
+      .res-grid-3   { grid-template-columns: 1fr; }
+      .combo-sliders { grid-template-columns: 1fr; }
+      .res-grid-2   { grid-template-columns: 1fr; }
+      .apple-stats  { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -342,7 +207,6 @@
 
   <div class="page-header">
     <h1>Why does pricing matter?</h1>
-
   </div>
 
   <!-- Formula -->
@@ -386,69 +250,177 @@
     <span class="bpval">80,000</span>
   </div>
 
-  <!-- Levers -->
-  <div class="sec-lbl">Now you &mdash; click a lever, then slide it</div>
+  <!-- STEP 1 -->
+  <div class="sec-lbl">Step 1 &mdash; one lever at a time</div>
+  <div class="sec-sub">Click a card to activate it, then move the slider. Only that variable changes &mdash; everything else stays fixed at baseline.</div>
+
   <div class="levers-grid">
     <div class="lc" id="lc-price" onclick="activate('price')">
       <div class="lt sp">Raise the price</div>
-      <div class="ls">Only SP changes &mdash; everything else stays the same</div>
-      <div class="lv blue" id="lv-price">+10%</div>
-      <input type="range" class="rblue" id="sl-price" min="-30" max="30" value="10" step="5" oninput="slide('price',this.value)" disabled>
-      <div class="lmeta"><span class="sp">SP</span> = <span id="sp-disp">110</span></div>
+      <div class="ls">Only <span class="sp">SP</span> changes &mdash; units and costs stay the same</div>
+      <div class="lv blue" id="lv-price">0%</div>
+      <input type="range" class="rblue" id="sl-price" min="-30" max="30" value="0" step="5" oninput="slide('price',this.value)" disabled>
+      <div class="lmeta"><span class="sp">SP</span> = <span id="sp-disp">100</span></div>
     </div>
     <div class="lc" id="lc-units" onclick="activate('units')">
       <div class="lt xu">Sell more units</div>
-      <div class="ls">Only X changes &mdash; everything else stays the same</div>
-      <div class="lv green" id="lv-units">+10%</div>
-      <input type="range" class="rgreen" id="sl-units" min="-30" max="30" value="10" step="5" oninput="slide('units',this.value)" disabled>
-      <div class="lmeta"><span class="xu">X</span> = <span id="x-disp">1,100</span></div>
+      <div class="ls">Only <span class="xu">X</span> changes &mdash; price and costs stay the same</div>
+      <div class="lv green" id="lv-units">0%</div>
+      <input type="range" class="rgreen" id="sl-units" min="-30" max="30" value="0" step="5" oninput="slide('units',this.value)" disabled>
+      <div class="lmeta"><span class="xu">X</span> = <span id="x-disp">1,000</span></div>
     </div>
     <div class="lc" id="lc-vc" onclick="activate('vc')">
       <div class="lt vc">Cut variable costs</div>
-      <div class="ls">Only VC changes &mdash; FC stays fixed regardless</div>
-      <div class="lv purple" id="lv-vc">&minus;10%</div>
-      <input type="range" class="rpurple" id="sl-vc" min="-30" max="30" value="-10" step="5" oninput="slide('vc',this.value)" disabled>
-      <div class="lmeta"><span class="vc">VC</span> = <span id="vc-disp">9.0</span></div>
+      <div class="ls">Only <span class="vc">VC</span> changes &mdash; <span class="fc">FC</span> stays fixed regardless</div>
+      <div class="lv purple" id="lv-vc">0%</div>
+      <input type="range" class="rpurple" id="sl-vc" min="-30" max="30" value="0" step="5" oninput="slide('vc',this.value)" disabled>
+      <div class="lmeta"><span class="vc">VC</span> = <span id="vc-disp">10.0</span></div>
     </div>
   </div>
 
-  <!-- Results -->
-  <div class="sec-lbl">What happens to profit?</div>
-  <div class="res-grid">
+  <!-- Step 1 result boxes -->
+  <div class="res-grid-3">
 
     <div class="res-col">
-      <div class="rhead sp">Price change scenario</div>
-      <div class="calc-line">Revenue = <span class="sp num" id="r-sp">110</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-rev-p">110,000</span></div>
+      <div class="rhead sp">Price change &mdash; profit impact</div>
+      <div class="calc-line">Revenue = <span class="sp num" id="r-sp">100</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-rev-p">100,000</span></div>
       <div class="calc-line">Var. costs = <span class="vc num">10</span> &times; <span class="xu num">1,000</span> = <span class="num">10,000</span></div>
-      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="calc-line"><span class="fc">Fixed costs</span> = <span class="fc num">10,000</span></div>
       <div class="profit-line">
         <div class="profit-name pr">Profit</div>
-        <div class="profit-val" id="pv-price">90,000</div>
-        <div class="profit-diff up" id="pd-price">+10,000 vs baseline</div>
+        <div class="profit-val pr" id="pv-price">80,000</div>
+        <div class="profit-diff zero" id="pd-price">= baseline</div>
       </div>
     </div>
 
     <div class="res-col">
-      <div class="rhead xu">Units change scenario</div>
-      <div class="calc-line">Revenue = <span class="sp num">100</span> &times; <span class="xu num" id="r-xu">1,100</span> = <span class="num" id="r-rev-u">110,000</span></div>
-      <div class="calc-line">Var. costs = <span class="vc num">10</span> &times; <span class="xu num" id="r-xu2">1,100</span> = <span class="num" id="r-vc-u">11,000</span></div>
-      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="rhead xu">Units change &mdash; profit impact</div>
+      <div class="calc-line">Revenue = <span class="sp num">100</span> &times; <span class="xu num" id="r-xu">1,000</span> = <span class="num" id="r-rev-u">100,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num">10</span> &times; <span class="xu num" id="r-xu2">1,000</span> = <span class="num" id="r-vc-u">10,000</span></div>
+      <div class="calc-line"><span class="fc">Fixed costs</span> = <span class="fc num">10,000</span></div>
       <div class="profit-line">
         <div class="profit-name pr">Profit</div>
-        <div class="profit-val" id="pv-units">89,000</div>
-        <div class="profit-diff up" id="pd-units">+9,000 vs baseline</div>
+        <div class="profit-val pr" id="pv-units">80,000</div>
+        <div class="profit-diff zero" id="pd-units">= baseline</div>
       </div>
     </div>
 
     <div class="res-col">
-      <div class="rhead vc">Cost change scenario</div>
+      <div class="rhead vc">Cost change &mdash; profit impact</div>
       <div class="calc-line">Revenue = <span class="sp num">100</span> &times; <span class="xu num">1,000</span> = <span class="num">100,000</span></div>
-      <div class="calc-line">Var. costs = <span class="vc num" id="r-vc">9.0</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-vctot">9,000</span></div>
-      <div class="calc-line">Fixed costs = <span class="fc num">10,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num" id="r-vc">10.0</span> &times; <span class="xu num">1,000</span> = <span class="num" id="r-vctot">10,000</span></div>
+      <div class="calc-line"><span class="fc">Fixed costs</span> = <span class="fc num">10,000</span></div>
       <div class="profit-line">
         <div class="profit-name pr">Profit</div>
-        <div class="profit-val" id="pv-vc">81,000</div>
-        <div class="profit-diff up" id="pd-vc">+1,000 vs baseline</div>
+        <div class="profit-val pr" id="pv-vc">80,000</div>
+        <div class="profit-diff zero" id="pd-vc">= baseline</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Step 1 winner callout -->
+  <div class="s1-winner" id="s1-winner"></div>
+
+  <hr class="divider">
+
+  <!-- STEP 2 -->
+  <div class="sec-lbl">Step 2 &mdash; the real world: all three levers at once</div>
+
+  <!-- Apple context box -->
+  <div class="apple-box">
+    <div class="apple-header">
+      <svg class="apple-logo" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Apple">
+        <path d="M19.6 14.8c0-2.6 2.1-3.8 2.2-3.9-1.2-1.7-3-1.9-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.2 1-4.1 2.5-1.7 3-.5 7.5 1.2 10 .8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2-.8-2-3.8z" fill="currentColor"/>
+        <path d="M17.3 8.4c.7-.8 1.1-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z" fill="currentColor"/>
+      </svg>
+      <div class="apple-title">Apple: the master class in combined pricing power</div>
+    </div>
+    <div class="apple-body">
+      In reality &mdash; and outside our mathematical simulation designed to isolate the impact of each lever &mdash; companies can pull all three levers simultaneously. No brand has demonstrated this more deliberately than Apple.<br><br>
+      As a <strong>price leader</strong>, Apple has consistently raised prices across product categories. The introduction of premium tiers (iPhone Pro Max) raised average selling prices while the retention of lower-priced models (standard iPhone, iPhone SE, iPad Air) made entry-level options feel comparatively affordable, boarding new consumer groups into the Apple ecosystem. This tiered pricing strategy is a textbook example of price architecture: the premium product frames everything else as accessible.<br><br>
+      On the <strong>cost side</strong>, Apple systematically stripped variable costs from its products under the cover of sustainability initiatives. The removal of wired EarPods (iPhone 12, 2020), the charging brick (iPhone 12, 2020), and later the in-box stickers reduced per-unit material and packaging costs. Critically, these removals were reframed positively &mdash; as environmental responsibility &mdash; while simultaneously opening a new revenue stream: accessory upsells. AirPods, MagSafe chargers, and Apple-branded cables became high-margin incremental purchases that would previously have been bundled for free.<br><br>
+      On the <strong>volume side</strong>, Apple expanded its addressable market through product differentiation and geographic pricing. Services (App Store, iCloud, Apple TV+, Apple Music) added a recurring revenue layer that grows with the user base independent of hardware unit sales.
+    </div>
+    <div class="apple-stats">
+      <div class="apple-stat">
+        <div class="apple-stat-lbl">iPhone avg. selling price</div>
+        <div class="apple-stat-val sp">$904 (2024)</div>
+        <div class="apple-stat-sub">vs. ~$641 in 2016 &mdash; +41% over 8 years</div>
+      </div>
+      <div class="apple-stat">
+        <div class="apple-stat-lbl">Services gross margin</div>
+        <div class="apple-stat-val xu">~74%</div>
+        <div class="apple-stat-sub">vs. ~37% for hardware (FY2024)</div>
+      </div>
+      <div class="apple-stat">
+        <div class="apple-stat-lbl">Accessories &amp; wearables revenue</div>
+        <div class="apple-stat-val am">$39.8bn (FY2024)</div>
+        <div class="apple-stat-sub">A category that barely existed pre-2016</div>
+      </div>
+    </div>
+    <div class="apple-source">
+      Sources: Apple Inc. Annual Reports (Form 10-K) FY2016&ndash;FY2024 &mdash; <a href="https://investor.apple.com/sec-filings/annual-reports/default.aspx" target="_blank">investor.apple.com</a> &nbsp;|&nbsp;
+      Statista: iPhone average selling price &mdash; <a href="https://www.statista.com/statistics/311408/apple-iphone-average-selling-prices/" target="_blank">statista.com</a> &nbsp;|&nbsp;
+      Apple Environmental Progress Report 2021 (EarPods/charger removal) &mdash; <a href="https://www.apple.com/environment/pdf/Apple_Environmental_Progress_Report_2021.pdf" target="_blank">apple.com/environment</a>
+    </div>
+  </div>
+
+  <!-- Combo sliders -->
+  <div class="combo-card">
+    <div class="combo-header">
+      <div>
+        <div class="combo-title">Now simulate the Apple move</div>
+        <div class="combo-sub-text">Adjust all three levers simultaneously &mdash; all sliders are always active here</div>
+      </div>
+      <span class="combo-badge">All 3 levers</span>
+    </div>
+    <div class="combo-sliders">
+      <div>
+        <div class="csl-lbl sp">Price change</div>
+        <div class="csl-val blue" id="clv-price">0%</div>
+        <input type="range" class="ramber" id="csl-price" min="-30" max="30" value="0" step="5" oninput="comboSlide()">
+        <div class="csl-meta"><span class="sp">SP</span> = <span id="csp-disp">100</span></div>
+      </div>
+      <div>
+        <div class="csl-lbl xu">Units change</div>
+        <div class="csl-val green" id="clv-units">0%</div>
+        <input type="range" class="ramber" id="csl-units" min="-30" max="30" value="0" step="5" oninput="comboSlide()">
+        <div class="csl-meta"><span class="xu">X</span> = <span id="cx-disp">1,000</span></div>
+      </div>
+      <div>
+        <div class="csl-lbl vc">Cost change</div>
+        <div class="csl-val purple" id="clv-vc">0%</div>
+        <input type="range" class="ramber" id="csl-vc" min="-30" max="30" value="0" step="5" oninput="comboSlide()">
+        <div class="csl-meta"><span class="vc">VC</span> = <span id="cvc-disp">10.0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 result boxes: combo + best single -->
+  <div class="res-grid-2">
+
+    <div class="combo-res">
+      <div class="rhead am">All three combined &mdash; profit impact</div>
+      <div class="calc-line">Revenue = <span class="sp num" id="cr-sp">100</span> &times; <span class="xu num" id="cr-xu">1,000</span> = <span class="num" id="cr-rev">100,000</span></div>
+      <div class="calc-line">Var. costs = <span class="vc num" id="cr-vc">10.0</span> &times; <span class="xu num" id="cr-xu2">1,000</span> = <span class="num" id="cr-vctot">10,000</span></div>
+      <div class="calc-line"><span class="fc">Fixed costs</span> = <span class="fc num">10,000</span></div>
+      <div class="profit-line">
+        <div class="profit-name am">Combined Profit</div>
+        <div class="profit-val am" id="pv-combo">80,000</div>
+        <div class="profit-diff zero" id="pd-combo">= baseline</div>
+      </div>
+    </div>
+
+    <div class="best-res">
+      <div class="rhead sp" id="best-head">Best single lever &mdash; price (for comparison)</div>
+      <div class="calc-line" id="best-line1">Revenue = <span class="sp num">100</span> &times; <span class="xu num">1,000</span> = <span class="num">100,000</span></div>
+      <div class="calc-line" id="best-line2">Var. costs = <span class="vc num">10</span> &times; <span class="xu num">1,000</span> = <span class="num">10,000</span></div>
+      <div class="calc-line"><span class="fc">Fixed costs</span> = <span class="fc num">10,000</span></div>
+      <div class="profit-line">
+        <div class="profit-name pr">Best single-lever Profit</div>
+        <div class="profit-val pr" id="pv-best">80,000</div>
+        <div class="profit-diff zero" id="pd-best">= baseline</div>
       </div>
     </div>
 
@@ -456,14 +428,13 @@
 
   <!-- Winner banner -->
   <div class="winner-banner" id="winner-banner">
-    <div class="wb-title">Price is the most powerful lever.</div>
-    <div class="wb-body" id="winner-body">At +10%, a price increase adds <strong>+10,000</strong> to profit &mdash; that is 10&times; more than cutting variable costs (+1,000) and more than selling 10% extra units (+9,000). Price goes straight to the bottom line because it doesn&rsquo;t create any extra cost.</div>
+    <div class="wb-title">The combination always beats the best single lever.</div>
+    <div class="wb-body" id="winner-body">When you pull all three levers together &mdash; as Apple has done deliberately across product generations &mdash; the profit gain exceeds any single-lever strategy. Price remains the most powerful isolated driver, but combining a price increase with volume growth and cost reduction creates a compounding effect that no single lever can match.</div>
   </div>
 
-  <!-- Research -->
-  <button class="rtoggle" id="rtoggle" onclick="toggleResearch()">Show research: what a study of 1,200 companies found</button>
+  <button class="rtoggle" id="rtoggle" onclick="toggleResearch()">Show research: impact of each lever on profit (1,200 companies)</button>
   <div class="rpanel" id="rpanel">
-    <div class="sec-lbl" style="margin-bottom:8px;">Impact of a 1% improvement on profit (1,200 companies)</div>
+    <div class="sec-lbl" style="margin-bottom:8px;">Impact of a 1% improvement on profit</div>
     <table>
       <thead>
         <tr>
@@ -479,121 +450,178 @@
         <tr><td class="fc">Fixed costs</td><td>2.7%</td><td>37.1%</td></tr>
       </tbody>
     </table>
-    <p class="note">To double profit through price alone, you only need a 9.1% price increase. To achieve the same by selling more units, you would need to grow sales by 27.1%.</p>
+    <p class="note">Source: McKinsey &amp; Company, "The Price Advantage" (Marn, Roegner &amp; Zawada). Study of 1,200 companies across industries. A 1% improvement in price yields an average 11% improvement in operating profit &mdash; nearly 3&times; the impact of a 1% improvement in unit sales. To double profit through price alone requires only a 9.1% increase; achieving the same through volume growth requires 27.1% more units sold.</p>
   </div>
 
   <button class="reset-btn" onclick="resetAll()">Reset simulator</button>
 
-  <div class="page-footer">
-    Pricing &mdash; Prof. Dr. Markus Rach
-  </div>
+  <div class="page-footer">Pricing &mdash; Prof. Dr. Markus Rach</div>
 
 </div>
 
 <script>
-  const B = { sp:100, x:1000, vc:10, fc:10000, profit:80000 };
-  const tried = { price:false, units:false, vc:false };
-  let active = null;
+  var B = { sp:100, x:1000, vc:10, fc:10000, profit:80000 };
+  var tried = { price:false, units:false, vc:false, combo:false };
+  var active = null;
 
   function fmt(n){ return Math.round(n).toLocaleString(); }
   function fmtd(n){ return parseFloat(n.toFixed(1)).toLocaleString(); }
   function calcProfit(sp,x,vc,fc){ return (sp*x)-(vc*x)-fc; }
+  function diffCls(d){ return d>0?'up':d<0?'down':'zero'; }
+  function diffTxt(d){ return d===0?'= baseline':(d>0?'+':'')+fmt(d)+' vs baseline'; }
 
   function activate(lv){
     if(active===lv) return;
     active = lv;
     ['price','units','vc'].forEach(function(l){
-      var c = document.getElementById('lc-'+l);
-      var s = document.getElementById('sl-'+l);
-      c.className = 'lc';
-      s.disabled = true;
+      var c=document.getElementById('lc-'+l);
+      var s=document.getElementById('sl-'+l);
+      c.className='lc'; s.disabled=true;
       if(l===lv){
         c.classList.add(l==='price'?'act-blue':l==='units'?'act-green':'act-purple');
-        s.disabled = false;
+        s.disabled=false;
       }
     });
-    tried[lv] = true;
+    tried[lv]=true;
     updateAll();
     checkWinner();
   }
 
-  function slide(lv, val){
-    val = parseInt(val);
-    var sign = val >= 0 ? '+' : '';
+  function slide(lv,val){
+    val=parseInt(val);
     if(lv==='price'){
-      document.getElementById('lv-price').textContent = sign+val+'%';
-      document.getElementById('sp-disp').textContent = Math.round(B.sp*(1+val/100));
+      document.getElementById('lv-price').textContent=(val>=0?'+':'')+val+'%';
+      document.getElementById('sp-disp').textContent=Math.round(B.sp*(1+val/100));
     } else if(lv==='units'){
-      document.getElementById('lv-units').textContent = sign+val+'%';
-      document.getElementById('x-disp').textContent = fmt(Math.round(B.x*(1+val/100)));
+      document.getElementById('lv-units').textContent=(val>=0?'+':'')+val+'%';
+      document.getElementById('x-disp').textContent=fmt(Math.round(B.x*(1+val/100)));
     } else {
-      document.getElementById('lv-vc').textContent = (val>=0?'+':'')+val+'%';
-      document.getElementById('vc-disp').textContent = (B.vc*(1+val/100)).toFixed(1);
+      document.getElementById('lv-vc').textContent=(val>=0?'+':'')+val+'%';
+      document.getElementById('vc-disp').textContent=(B.vc*(1+val/100)).toFixed(1);
     }
     updateAll();
   }
 
+  function comboSlide(){
+    var pv=parseInt(document.getElementById('csl-price').value);
+    var uv=parseInt(document.getElementById('csl-units').value);
+    var vv=parseInt(document.getElementById('csl-vc').value);
+    document.getElementById('clv-price').textContent=(pv>=0?'+':'')+pv+'%';
+    document.getElementById('clv-units').textContent=(uv>=0?'+':'')+uv+'%';
+    document.getElementById('clv-vc').textContent=(vv>=0?'+':'')+vv+'%';
+    document.getElementById('csp-disp').textContent=Math.round(B.sp*(1+pv/100));
+    document.getElementById('cx-disp').textContent=fmt(Math.round(B.x*(1+uv/100)));
+    document.getElementById('cvc-disp').textContent=(B.vc*(1+vv/100)).toFixed(1);
+    tried.combo=true;
+    updateAll();
+    checkWinner();
+  }
+
   function updateAll(){
-    var pv = parseInt(document.getElementById('sl-price').value);
-    var uv = parseInt(document.getElementById('sl-units').value);
-    var vv = parseInt(document.getElementById('sl-vc').value);
+    var pv=parseInt(document.getElementById('sl-price').value);
+    var uv=parseInt(document.getElementById('sl-units').value);
+    var vv=parseInt(document.getElementById('sl-vc').value);
+    var cpv=parseInt(document.getElementById('csl-price').value);
+    var cuv=parseInt(document.getElementById('csl-units').value);
+    var cvv=parseInt(document.getElementById('csl-vc').value);
 
-    var sp2 = Math.round(B.sp*(1+pv/100));
-    var x2  = Math.round(B.x*(1+uv/100));
-    var vc2 = parseFloat((B.vc*(1+vv/100)).toFixed(1));
+    var sp2=Math.round(B.sp*(1+pv/100));
+    var x2=Math.round(B.x*(1+uv/100));
+    var vc2=parseFloat((B.vc*(1+vv/100)).toFixed(1));
+    var csp2=Math.round(B.sp*(1+cpv/100));
+    var cx2=Math.round(B.x*(1+cuv/100));
+    var cvc2=parseFloat((B.vc*(1+cvv/100)).toFixed(1));
 
-    var pp = calcProfit(sp2, B.x,  B.vc, B.fc);
-    var up = calcProfit(B.sp, x2,  B.vc, B.fc);
-    var vp = calcProfit(B.sp, B.x, vc2,  B.fc);
+    var pp=calcProfit(sp2,B.x,B.vc,B.fc);
+    var up=calcProfit(B.sp,x2,B.vc,B.fc);
+    var vp=calcProfit(B.sp,B.x,vc2,B.fc);
+    var cp=calcProfit(csp2,cx2,cvc2,B.fc);
 
-    document.getElementById('r-sp').textContent    = sp2;
-    document.getElementById('r-rev-p').textContent = fmt(sp2*B.x);
-    setProfit('price', pp);
+    // Step 1 boxes
+    document.getElementById('r-sp').textContent=sp2;
+    document.getElementById('r-rev-p').textContent=fmt(sp2*B.x);
+    setProfit('price',pp);
 
-    document.getElementById('r-xu').textContent    = fmt(x2);
-    document.getElementById('r-xu2').textContent   = fmt(x2);
-    document.getElementById('r-rev-u').textContent = fmt(B.sp*x2);
-    document.getElementById('r-vc-u').textContent  = fmt(B.vc*x2);
-    setProfit('units', up);
+    document.getElementById('r-xu').textContent=fmt(x2);
+    document.getElementById('r-xu2').textContent=fmt(x2);
+    document.getElementById('r-rev-u').textContent=fmt(B.sp*x2);
+    document.getElementById('r-vc-u').textContent=fmt(B.vc*x2);
+    setProfit('units',up);
 
-    document.getElementById('r-vc').textContent    = fmtd(vc2);
-    document.getElementById('r-vctot').textContent = fmt(vc2*B.x);
-    setProfit('vc', vp);
+    document.getElementById('r-vc').textContent=fmtd(vc2);
+    document.getElementById('r-vctot').textContent=fmt(vc2*B.x);
+    setProfit('vc',vp);
 
-    updateWinnerText(pp, up, vp, pv, uv, vv);
-  }
-
-  function setProfit(t, p){
-    var diff = p - B.profit;
-    document.getElementById('pv-'+t).textContent = fmt(p);
-    var de = document.getElementById('pd-'+t);
-    de.textContent = (diff>=0?'+':'')+fmt(diff)+' vs baseline';
-    de.className = 'profit-diff '+(diff>0?'up':diff<0?'down':'zero');
-  }
-
-  function updateWinnerText(pp, up, vp, pv, uv, vv){
-    if(!tried.price||!tried.units||!tried.vc) return;
-    var pd = pp-B.profit, ud = up-B.profit, vd = vp-B.profit;
-    document.getElementById('winner-body').innerHTML =
-      'At '+pv+'%, a price increase adds <strong>'+(pd>=0?'+':'')+fmt(pd)+'</strong> to profit. '+
-      'Selling '+(uv>=0?'+':'')+uv+'% more units adds <strong>'+(ud>=0?'+':'')+fmt(ud)+'</strong>. '+
-      'Cutting variable costs by '+Math.abs(vv)+'% adds <strong>'+(vd>=0?'+':'')+fmt(vd)+'</strong>. '+
-      'Price goes straight to the bottom line &mdash; no extra costs are created.';
-  }
-
-  function checkWinner(){
+    // Step 1 winner callout
     if(tried.price&&tried.units&&tried.vc){
-      document.getElementById('winner-banner').style.display = 'block';
-      document.getElementById('rtoggle').style.display = 'inline-block';
+      var diffs = [{name:'price',profit:pp,pct:pv,label:'price increase'},{name:'units',profit:up,pct:uv,label:'unit increase'},{name:'vc',profit:vp,pct:vv,label:'cost reduction'}];
+      diffs.sort(function(a,b){return (b.profit-B.profit)-(a.profit-B.profit);});
+      var best=diffs[0];
+      var bdiff=best.profit-B.profit;
+      var w=document.getElementById('s1-winner');
+      if(bdiff!==0){
+        w.style.display='block';
+        w.innerHTML='At the current settings, <strong>'+(best.label.charAt(0).toUpperCase()+best.label.slice(1))+'</strong> (+'+Math.abs(best.pct)+'%) delivers the highest profit gain: <strong>'+(bdiff>=0?'+':'')+fmt(bdiff)+'</strong> vs baseline. Price increases reach the bottom line immediately &mdash; no extra variable costs are created.';
+      } else {
+        w.style.display='none';
+      }
+    }
+
+    // Step 2 combo box
+    document.getElementById('cr-sp').textContent=csp2;
+    document.getElementById('cr-xu').textContent=fmt(cx2);
+    document.getElementById('cr-xu2').textContent=fmt(cx2);
+    document.getElementById('cr-rev').textContent=fmt(csp2*cx2);
+    document.getElementById('cr-vc').textContent=fmtd(cvc2);
+    document.getElementById('cr-vctot').textContent=fmt(cvc2*cx2);
+    setProfit('combo',cp);
+
+    // Best single lever box (mirrors step 1 best at current settings)
+    var singles=[{key:'price',p:pp,sp:sp2,x:B.x,vc:B.vc,label:'price'},{key:'units',p:up,sp:B.sp,x:x2,vc:B.vc,label:'units'},{key:'vc',p:vp,sp:B.sp,x:B.x,vc:vc2,label:'cost'}];
+    singles.sort(function(a,b){return (b.p-B.profit)-(a.p-B.profit);});
+    var bs=singles[0];
+    var colorMap={price:'sp',units:'xu',vc:'vc'};
+    var labelMap={price:'Price lever &mdash; for comparison',units:'Units lever &mdash; for comparison',vc:'Cost lever &mdash; for comparison'};
+    document.getElementById('best-head').className='rhead '+colorMap[bs.key];
+    document.getElementById('best-head').innerHTML=labelMap[bs.key];
+    document.getElementById('best-line1').innerHTML='Revenue = <span class="sp num">'+bs.sp+'</span> &times; <span class="xu num">'+fmt(bs.x)+'</span> = <span class="num">'+fmt(bs.sp*bs.x)+'</span>';
+    document.getElementById('best-line2').innerHTML='Var. costs = <span class="vc num">'+fmtd(bs.vc)+'</span> &times; <span class="xu num">'+fmt(bs.x)+'</span> = <span class="num">'+fmt(bs.vc*bs.x)+'</span>';
+    setProfit('best',bs.p);
+
+    // Winner banner
+    if(tried.combo){
+      var cdiff=cp-B.profit, bdiff2=bs.p-B.profit;
+      if(cdiff!==0||bdiff2!==0){
+        document.getElementById('winner-banner').style.display='block';
+        document.getElementById('rtoggle').style.display='inline-block';
+        document.getElementById('winner-body').innerHTML=
+          'The combined strategy delivers a profit of <strong>'+fmt(cp)+'</strong> ('+(cdiff>=0?'+':'')+fmt(cdiff)+' vs baseline). '+
+          'The best single lever alone achieves <strong>'+fmt(bs.p)+'</strong> ('+(bdiff2>=0?'+':'')+fmt(bdiff2)+' vs baseline). '+
+          'Combining all three levers &mdash; as Apple does systematically &mdash; generates a profit gain that no single lever can match on its own.';
+      }
     }
   }
 
+  function setProfit(t,p){
+    var diff=p-B.profit;
+    var pv=document.getElementById('pv-'+t);
+    var pd=document.getElementById('pd-'+t);
+    if(!pv||!pd) return;
+    pv.textContent=fmt(p);
+    pd.textContent=diffTxt(diff);
+    pd.className='profit-diff '+diffCls(diff);
+  }
+
+  function checkWinner(){
+    updateAll();
+  }
+
   function toggleResearch(){
-    var p = document.getElementById('rpanel');
-    var b = document.getElementById('rtoggle');
+    var p=document.getElementById('rpanel');
+    var b=document.getElementById('rtoggle');
     if(p.style.display==='block'){
       p.style.display='none';
-      b.textContent='Show research: what a study of 1,200 companies found';
+      b.textContent='Show research: impact of each lever on profit (1,200 companies)';
     } else {
       p.style.display='block';
       b.textContent='Hide research';
@@ -601,24 +629,28 @@
   }
 
   function resetAll(){
-    active = null;
-    tried.price = tried.units = tried.vc = false;
+    active=null;
+    tried={price:false,units:false,vc:false,combo:false};
     ['price','units','vc'].forEach(function(l){
-      document.getElementById('lc-'+l).className = 'lc';
-      document.getElementById('sl-'+l).disabled = true;
+      document.getElementById('lc-'+l).className='lc';
+      document.getElementById('sl-'+l).disabled=true;
+      document.getElementById('sl-'+l).value=0;
+      document.getElementById('lv-'+l).textContent='0%';
     });
-    document.getElementById('sl-price').value = 10;
-    document.getElementById('sl-units').value = 10;
-    document.getElementById('sl-vc').value = -10;
-    document.getElementById('lv-price').textContent = '+10%';
-    document.getElementById('lv-units').textContent = '+10%';
-    document.getElementById('lv-vc').textContent = '\u221210%';
-    document.getElementById('sp-disp').textContent = '110';
-    document.getElementById('x-disp').textContent = '1,100';
-    document.getElementById('vc-disp').textContent = '9.0';
-    document.getElementById('winner-banner').style.display = 'none';
-    document.getElementById('rtoggle').style.display = 'none';
-    document.getElementById('rpanel').style.display = 'none';
+    document.getElementById('sp-disp').textContent='100';
+    document.getElementById('x-disp').textContent='1,000';
+    document.getElementById('vc-disp').textContent='10.0';
+    ['csl-price','csl-units','csl-vc'].forEach(function(id){ document.getElementById(id).value=0; });
+    document.getElementById('clv-price').textContent='0%';
+    document.getElementById('clv-units').textContent='0%';
+    document.getElementById('clv-vc').textContent='0%';
+    document.getElementById('csp-disp').textContent='100';
+    document.getElementById('cx-disp').textContent='1,000';
+    document.getElementById('cvc-disp').textContent='10.0';
+    document.getElementById('s1-winner').style.display='none';
+    document.getElementById('winner-banner').style.display='none';
+    document.getElementById('rtoggle').style.display='none';
+    document.getElementById('rpanel').style.display='none';
     updateAll();
   }
 
